@@ -40,7 +40,7 @@ export default async function Auth (req, res) {
             });
 
             const session = await getSession(req, res);
-            session.user = user != null ? user : "Неверные логин или пароль";
+            session.user = user != null ? user : "Incorrect login or password";
             await session.commit();
 
             res.status(200).send(session.user);
@@ -48,6 +48,6 @@ export default async function Auth (req, res) {
             res.status(403).send(error.message);
         }
     } else {
-        res.status(404).send('Поддерживается только POST метод');
+        res.status(404).send('\n' + 'Supports only POST method');
     }
 }

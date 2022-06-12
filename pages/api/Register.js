@@ -48,6 +48,6 @@ export default async function Register(req, res) {
             res.status(403).send(error);
         }
     } else {
-        res.status(404).send('Поддерживается только POST метод');
+        res.status(404).send('Supports only POST method');
     }
 }
