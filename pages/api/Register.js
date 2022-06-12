@@ -26,7 +26,7 @@ export default async function Register(req, res) {
     await runMiddleware(req, res, cors);
 
     if (req.method === 'POST') {
-        if (!req.body['login'] || !req.body['password']) {
+        if (!req.body['login'] && !req.body['password']) {
             res.status(403).send('Not found login or password');
             return;
         }
@@ -43,7 +43,7 @@ export default async function Register(req, res) {
             session.user = user;
             await session.commit();
 
-            res.status(200).send(session.user);
+            res.status(200).send('true');
         } catch (error) {
             res.status(403).send(error);
         }

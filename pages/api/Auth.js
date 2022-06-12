@@ -39,11 +39,15 @@ export default async function Auth (req, res) {
                 },
             });
 
-            const session = await getSession(req, res);
-            session.user = user != null ? user : "Incorrect login or password";
-            await session.commit();
+            if (user != null) {
+                const session = await getSession(req, res);
+                session.user = user;
+                await session.commit();
 
-            res.status(200).send(session.user);
+                res.status(200).send('true');
+            } else {
+                res.status(403).send('Incorrect login or password');
+            }
         } catch (error) {
             res.status(403).send(error.message);
         }
