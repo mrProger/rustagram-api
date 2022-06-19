@@ -38,7 +38,7 @@ export default async function Register(req, res) {
                     password: md5(req.body['password']),
                 },
             });
-
+            
             const session = await getSession(req, res);
             session.user = user;
             await session.commit();

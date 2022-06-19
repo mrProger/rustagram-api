@@ -1,16 +1,16 @@
-datasource db {
-    provider = "sqlite"
-    url = "file:./database/data.db"
+generator client {
+  provider = "prisma-client-js"
 }
 
-generator client {
-    provider = "prisma-client-js"
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Account {
-    id          Int     @id @default(autoincrement())
-    login       String  @unique
-    password    String
+  id       Int    @id @default(autoincrement())
+  login    String @unique
+  password String
 
-    @@map("account")
+  @@map("account")
 }

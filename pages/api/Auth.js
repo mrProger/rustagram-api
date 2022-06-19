@@ -34,8 +34,8 @@ export default async function Auth (req, res) {
         try {
             let user = await prisma.account.findFirst({
                 where: {
-                    login: { contains: req.body['login'] },
-                    password: { contains: md5(req.body['password']) },
+                    login: req.body['login'],
+                    password: md5(req.body['password']),
                 },
             });
 
